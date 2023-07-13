@@ -43,6 +43,6 @@ with SMBus(1) as i2c:
     print("Done")
 
 
-while (True):
-    write_from_rpi_to_esp32()
-    time.sleep(0.5)
+# while (True):
+#     write_from_rpi_to_esp32()
+#     time.sleep(0.5)
