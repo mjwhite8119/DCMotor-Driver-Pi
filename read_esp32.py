@@ -4,9 +4,8 @@ from Raspberry_Pi_Master_for_ESP32_I2C_SLAVE.packer import Packer
 from Raspberry_Pi_Master_for_ESP32_I2C_SLAVE.unpacker import Unpacker
 import time
 
-DEVICE_ADDR = 0x21
+DEVICE_ADDR = 0x55
 REGISTER = 0x01
-slave_address = 0x21  # slave address is 4
 register = 0x01  # register to read is 0x01
 
 
