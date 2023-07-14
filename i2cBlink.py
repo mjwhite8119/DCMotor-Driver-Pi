@@ -21,6 +21,7 @@ def readMessage():
         smsMessage += chr(data_received_from_ESP32[i])
 
     print(smsMessage.encode('utf-8'))
+    print(smsMessage)
     data_received_from_ESP32 =""
     smsMessage = ""
 
@@ -48,17 +49,17 @@ while numb == 1:
 
 	ledstate = input(">>>>   ")
 
-  if ledstate == "1":
-    bus.write_byte(addr,3)
-    print(StringToBytes(data_to_send_to_ESP32))
-    bus.write_i2c_block_data(addr, 0x00,StringToBytes(data_to_send_to_ESP32))
-          
-  # bus.write_byte(addr, 0x1) # switch it on
-  elif ledstate == "0":
-    # data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0,12)
-    readMessage()
-    # print(data_received_from_ESP32)
-              
-  # bus.write_byte(addr, 0x0) # switch it on
-  else:
-    numb = 0
+	if ledstate == "1":
+		bus.write_byte(addr,3)
+		print(StringToBytes(data_to_send_to_ESP32))
+		bus.write_i2c_block_data(addr, 0x00,StringToBytes(data_to_send_to_ESP32))
+			
+	# bus.write_byte(addr, 0x1) # switch it on
+	elif ledstate == "0":
+		# data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0,12)
+		readMessage()
+		# print(data_received_from_ESP32)
+				
+	# bus.write_byte(addr, 0x0) # switch it on
+	else:
+		numb = 0
