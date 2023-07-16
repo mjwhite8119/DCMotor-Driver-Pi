@@ -7,8 +7,9 @@
 
 from smbus import SMBus
 
-addr = 0x55 # bus address
+addr = 0x55 # Client address
 bus = SMBus(1) # indicates /dev/ic2-1
+BUFFER_LENGTH = 37
 data_received_from_ESP32 = ""
 data_to_send_to_ESP32 = "Hello ESP32"
 
@@ -16,7 +17,8 @@ numb = 1
 
 def readMessage():
     global smsMessage
-    data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0,15)
+    # client address, register, length
+    data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0, BUFFER_LENGTH)
     for i in range(len(data_received_from_ESP32)):
         smsMessage += chr(data_received_from_ESP32[i])
 
@@ -56,9 +58,11 @@ while numb == 1:
 			
 	# bus.write_byte(addr, 0x1) # switch it on
 	elif ledstate == "0":
-		# data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0,12)
-		readMessage()
-		# print(data_received_from_ESP32)
+		data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0, BUFFER_LENGTH)
+        print(data_received_from_ESP32)
+        buffer(data_received_from_ESP32)
+
+		# readMessage()
 				
 	# bus.write_byte(addr, 0x0) # switch it on
 	else:
