@@ -62,6 +62,18 @@ def StringToBytes(val):
             retVal.append(ord(c))
     return retVal
 
+def unpackBuffer(buffer):
+    for i in range(len(motors)):
+        motors[i] = buffer[i]
+        
+    offset = len(motors)    
+    for i in range(len(encoderResets)):
+        encoderResets[i+offset] = buffer[i + offset]
+
+    offset = len(motors) + len(encoderResets)   
+    for i in range(len(encoders) * 2):
+        encoders[i+offset] = buffer[i + offset]    
+
 print ("Enter 1 for ON or 0 for OFF")
 while numb == 1:
 
@@ -95,10 +107,14 @@ while numb == 1:
         # readNumber()
         data_received_from_ESP32 = bus.read_i2c_block_data(addr, 0, 32)
         print(data_received_from_ESP32)
+        unpackBuffer(data_received_from_ESP32)
+
+        print(encoders[0])
+        print(encoders[1])
         # string = ''.join([hex(item) for item in data_received_from_ESP32])
         # print(string)
-        motor1 = data_received_from_ESP32[0:2]
-        print(motor1)
+        # motor1 = data_received_from_ESP32[0:2]
+        # print(motor1)
         # readMessage()
                 
     # bus.write_byte(addr, 0x0) # switch it on
