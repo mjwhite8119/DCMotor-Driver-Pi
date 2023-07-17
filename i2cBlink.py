@@ -76,14 +76,6 @@ while numb == 1:
         encoders[1] = 3445
         encoders[5] = 512
  
-        high1, low1 = bytes(encoders[0])
-        high2, low2 = bytes(encoders[1])
-        high3, low3 = bytes(encoders[2])
-        high4, low4 = bytes(encoders[3])
-        high5, low5 = bytes(encoders[4])
-        high6, low6 = bytes(encoders[5])
-        print(high1)
-        print(low1)
         expanded_encoders = np.concatenate((bytes(encoders[0]),bytes(encoders[1]),bytes(encoders[2]),
                                             bytes(encoders[3]),bytes(encoders[4]),bytes(encoders[5])), axis=None)
 
