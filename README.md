@@ -39,6 +39,22 @@ Useful commands:
     ifconfig
     ip -details -statistics link show can0
 
+Read and Enable heartbeat.  Zero is disabled.
+
+    cocomm "1 read 0x1017 0 u16"
+    cocomm "1 write 0x1017 0 u16 1000"
+
+## CANOpen Editor
+Clone https://github.com/CANopenNode/CANopenEditor
+
+Install `mono`, which is a linux utility from running Windows C# programs.
+    sudo apt install mono-complete    
+
+Start app:
+    mono CANEditor.exe
+
+
+
 
 
 
